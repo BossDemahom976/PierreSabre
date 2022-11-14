@@ -59,8 +59,15 @@ public class Humain {
 	}
 
 	private void memoriser(Humain humain) {
-		this.memoire[this.nbConnaissance] = humain;
-		this.nbConnaissance = (this.nbConnaissance + 1) % 30;
+		if (this.nbConnaissance == 30) {
+			for (int i = 0; i < this.nbConnaissance - 1; i++) {
+				this.memoire[i] = this.memoire[i + 1];
+			}
+			this.memoire[this.nbConnaissance - 1] = humain;
+		} else {
+			this.memoire[this.nbConnaissance] = humain;
+			this.nbConnaissance = (this.nbConnaissance + 1);
+		}
 	}
 
 	private void repondre(Humain humain) {
